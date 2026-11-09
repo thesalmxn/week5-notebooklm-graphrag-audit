@@ -1,7 +1,7 @@
-# Week 5 — Strict Source-Grounding & Global Sensemaking Audit
+# Week 5 - Strict Source-Grounding & Global Sensemaking Audit
 
 **Topic:** The Google NotebookLM Audit & GraphRAG
-**Course:** Conversational Artificial Intelligence — ps05: Dual-Path GraphRAG & The Google NotebookLM Grounding Lab
+**Course:** Conversational Artificial Intelligence - ps05: Dual-Path GraphRAG & The Google NotebookLM Grounding Lab
 **Author:** Mohammad Salman Sunakal (5019034)
 
 ---
@@ -9,7 +9,7 @@
 ## What this is
 
 An **audit harness** for grounded RAG systems. It tests whether a retrieval-augmented
-endpoint actually grounds its answers in the source documents — or whether it
+endpoint actually grounds its answers in the source documents - or whether it
 hallucinates from parametric memory while attaching citations that look real.
 
 Three independent audit passes:
@@ -35,16 +35,16 @@ Week5_NotebookLM_GraphRAG_Audit.pptx # 5-slide lightning presentation
 
 ## Why a mock endpoint
 
-Google NotebookLM is closed-source and exposes no public API — it cannot be
+Google NotebookLM is closed-source and exposes no public API - it cannot be
 called from Python. The audit therefore targets the **output contract** that a
 grounded system like NotebookLM promises, not its internal weights.
 
 `MockEndpoint` simulates three behaviors so the harness can demonstrate its own
 pass/fail logic:
 
-- `mixed` (default) — 30% parametric leak, 20% decorative citation, 50% grounded
-- `refuse_ok` — always refuses (strict closed-world behavior)
-- `grounded` — always grounded (baseline)
+- `mixed` (default) - 30% parametric leak, 20% decorative citation, 50% grounded
+- `refuse_ok` - always refuses (strict closed-world behavior)
+- `grounded` - always grounded (baseline)
 
 The harness is the deliverable. The mock is a test fixture. Pointing the harness
 at a real endpoint requires only implementing `ask()` and `audio_overviews()`.
@@ -80,12 +80,12 @@ the three passes, and prints the results table and audit log.
 
 **Interpretation**
 
-- **Citation support — 86%:** 14% of citations were *decorative* — the claim had
+- **Citation support - 86%:** 14% of citations were *decorative* - the claim had
   zero token overlap with the cited chunk. The verifier caught them.
-- **Negative-constraint — 0% → 100%:** the baseline endpoint refused **0%** of
+- **Negative-constraint - 0% → 100%:** the baseline endpoint refused **0%** of
   out-of-corpus probes (it hallucinated every time); the hardened endpoint
-  refused **100%**. Same harness, opposite verdicts — proof the detector works.
-- **Audio fidelity — 67%:** 2 of 3 podcast sentences were grounded. The
+  refused **100%**. Same harness, opposite verdicts - proof the detector works.
+- **Audio fidelity - 67%:** 2 of 3 podcast sentences were grounded. The
   unsupported sentence ("Founded in 1998") contained a fact absent from the
   source documents.
 
@@ -97,7 +97,7 @@ the three passes, and prints the results table and audit log.
   on claim tokens). Threshold for "supported" is `0.5`.
 - **`is_refusal()`** matches a small set of refusal phrases
   (`"not mentioned in the sources"`, `"cannot find"`, `"no information"`, …).
-  This is intentionally conservative — false negatives (missed refusals) are
+  This is intentionally conservative - false negatives (missed refusals) are
   preferred to false positives.
 - **`supported_by()`** checks each podcast sentence against the whole corpus
   with a `0.6` overlap threshold.
@@ -132,4 +132,4 @@ The audit's corpus-level probe contrasts:
 
 ## License
 
-Course submission — not for redistribution.
+Course submission - not for redistribution.
