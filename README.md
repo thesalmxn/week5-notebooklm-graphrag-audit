@@ -27,9 +27,13 @@ included so the audit is reproducible without a live API.
 ---
 
 ## Files
-03_NotebookLM_RAG_Audit.py # audit harness (the implementation)
-ps05_solution.ipynb # runs the harness, produces the numbers
-Week5_NotebookLM_GraphRAG_Audit.pptx # 5-slide lightning presentation
+
+| File | Purpose |
+|---|---|
+| `03_NotebookLM_RAG_Audit.py` | The audit harness (core implementation) |
+| `ps05_solution.ipynb` | Runs the harness and produces the final numbers |
+| `Week5_NotebookLM_GraphRAG_Audit.pptx` | 5-slide lightning presentation |
+| `README.md` | This documentation file |
 
 ---
 
